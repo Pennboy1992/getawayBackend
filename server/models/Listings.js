@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 //create a mongoose schema
 const listingsSchema = mongoose.Schema({
-  propertyId: { type: String, required: true },
+  ownerId: { type: Schema.Types.ObjectId, ref: "Users" },
+  propertyId: Schema.Types.ObjectId,
   address: { type: String, required: true },
   price: { type: Number, required: true },
   img: { type: String, required: true },
