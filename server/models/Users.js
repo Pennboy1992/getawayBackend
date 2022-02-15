@@ -1,4 +1,5 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 //create a mongoose schema
 // User should be able to have multiple listings and should be able to rent multiple properties
