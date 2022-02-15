@@ -17,11 +17,7 @@ app.use(rootRouter);
 
 app.use(cors());
 
-//const connectionStg =
-// "mongodb+srv://team3:team321@cluster0.rzkvv.mongodb.net/myGetaways?retryWrites=true&w=majority";
-
 const port = process.env.PORT || 8080;
-
 
 mongoose
   .connect(process.env.CONNECTION_STG)
