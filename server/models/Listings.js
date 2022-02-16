@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 //create a mongoose schema
 const listingsSchema = mongoose.Schema({
-  ownerId: { type: Schema.Types.ObjectId, ref: "Users" },
+  ownerEmail: { type: String, ref: "Users" },
   propertyId: Schema.Types.ObjectId,
   address: { type: String, required: true },
   price: { type: Number, required: true },

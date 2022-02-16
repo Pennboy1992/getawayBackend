@@ -13,4 +13,23 @@ usersRouter.get("/", async (req, res) => {
   }
 });
 
+usersRouter.post("/new", async (req, res) => {
+  try {
+
+    const doc = await Users.create(req.body)
+
+    await doc.save((err) => {
+      if (err) {
+        console.error("ERROR Persisting User")
+      } else {
+        console.log("Saved New User!")
+      }
+    });
+
+    res.status(200).send("Saved User!")
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 export default usersRouter;
