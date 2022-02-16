@@ -13,23 +13,34 @@ usersRouter.get("/", async (req, res) => {
   }
 });
 
-usersRouter.post("/new", async (req, res) => {
+usersRouter.get("/findUser", async (req, res) => {
   try {
+    const { email } = req.body;
+    const myUser = await Users.findOne({ email });
+    console.log(myUser);
+    res.status(200).send(myUser);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
 
-    const doc = await Users.create(req.body)
+usersRouter.post("/new", async (req, res) => {
+  console.log(`route hit with: ${req.body}`);
+  try {
+    const doc = await Users.create(req.body);
 
     await doc.save((err) => {
       if (err) {
-        console.error("ERROR Persisting User")
+        console.error("ERROR Persisting User");
       } else {
-        console.log("Saved New User!")
+        console.log("Saved New User!");
       }
     });
 
-    res.status(200).send("Saved User!")
+    res.status(200).send("Saved User!");
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
 export default usersRouter;
