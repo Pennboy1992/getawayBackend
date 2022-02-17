@@ -15,6 +15,18 @@ listingsRouter.get("/", async (req, res) => {
   }
 });
 
+listingsRouter.get("/userListings/:email", async (req, res) => {
+  try {
+    console.log(req.params);
+    const { email } = req.params;
+    const myListings = await Listings.find({ ownerEmail: email });
+    console.log(myListings);
+    res.status(200).send(myListings);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
+
 //needs owner information and validation
 listingsRouter.post("/new", async (req, res) => {
   try {
@@ -28,20 +40,20 @@ listingsRouter.post("/new", async (req, res) => {
     // });
 
     //dynamic post
-    const doc = await Listings.create(req.body)
+    const doc = await Listings.create(req.body);
 
     await doc.save((err) => {
       if (err) {
-        console.error("ERROR Persisting Listing")
+        console.error("ERROR Persisting Listing");
       } else {
-        console.log("Saved New Listing!")
+        console.log("Saved New Listing!");
       }
     });
 
-    res.status(200).send("Saved Listing!")
+    res.status(200).send("Saved Listing!");
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
 export default listingsRouter;
