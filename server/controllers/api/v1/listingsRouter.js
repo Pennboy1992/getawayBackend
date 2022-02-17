@@ -60,7 +60,18 @@ listingsRouter.put("/edit", async (req, res) => {
     );
 
     console.log(doc);
-    res.status(200).send(doc);
+    res.status(202).send(doc);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+listingsRouter.delete("/delete", async (req, res) => {
+  console.log(req.body);
+  try {
+    const doc = await Listings.findOneAndDelete({ _id: req.body.id });
+    console.log(doc);
+    res.status(202).send(doc);
   } catch (err) {
     console.log(err);
   }
