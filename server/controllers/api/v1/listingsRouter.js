@@ -15,17 +15,17 @@ listingsRouter.get("/", async (req, res) => {
   }
 });
 
-listingsRouter.get("/userListings", async (req, res) => {
-  try {
-    console.log(req.body);
-    const { ownerEmail } = req.body;
-    const myListings = await Listings.find({ ownerEmail }).exec();
-    console.log(myListings);
-    res.status(200).send(myListings);
-  } catch (err) {
-    res.status(404).send(err);
-  }
-});
+// listingsRouter.get("/userListings", async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     const { ownerEmail } = req.body;
+//     const myListings = await Listings.find({ ownerEmail }).exec();
+//     console.log(myListings);
+//     res.status(200).send(myListings);
+//   } catch (err) {
+//     res.status(404).send(err);
+//   }
+// });
 
 //needs owner information and validation
 listingsRouter.post("/new", async (req, res) => {
