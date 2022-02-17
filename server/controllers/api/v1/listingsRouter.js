@@ -25,19 +25,6 @@ listingsRouter.get("/:propertyType", async (req, res) => {
 
 });
 
-listingsRouter.post("/userListings", async (req, res) => {
-  console.log(`route hit with: ${req.body.ownerEmail}`);
-  try {
-    console.log(req.body);
-    const { ownerEmail } = req.body;
-    const myListings = await Listings.find({ ownerEmail }).exec();
-    console.log(myListings);
-    res.status(200).send(myListings);
-  } catch (err) {
-    res.status(404).send(err);
-  }
-});
-
 //needs owner information and validation
 listingsRouter.post("/new", async (req, res) => {
   try {
@@ -51,6 +38,29 @@ listingsRouter.post("/new", async (req, res) => {
     });
 
     res.status(200).send("Saved Listing!");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+listingsRouter.put("/edit", async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const doc = await Listings.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        address: req.body.address,
+        price: req.body.price,
+        description: req.body.description,
+        propertyType: req.body.propertyType,
+        img: req.body.image,
+      },
+      { new: true }
+    );
+
+    console.log(doc);
+    res.status(200).send(doc);
   } catch (err) {
     console.log(err);
   }
