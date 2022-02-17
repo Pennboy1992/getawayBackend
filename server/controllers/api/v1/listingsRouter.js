@@ -15,6 +15,16 @@ listingsRouter.get("/", async (req, res) => {
   }
 });
 
+listingsRouter.get("/:propertyType", async (req, res) => {
+  try{
+    const result = await Listings.find({ propertyType: req.params.propertyType})
+    res.status(200).send(result);
+  }catch(err){
+    res.status(404).send(err);
+  }
+
+});
+
 //needs owner information and validation
 listingsRouter.post("/new", async (req, res) => {
   try {
