@@ -21,7 +21,7 @@ listingsRouter.get("/userListings/:email", async (req, res) => {
     const { email } = req.params;
     const myListings = await Listings.find({ ownerEmail: email });
     console.log(myListings);
-    res.status(200).send(myListings);
+    res.status(200).send(req.params);
   } catch (err) {
     res.status(404).send(err);
   }
