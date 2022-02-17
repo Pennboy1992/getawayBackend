@@ -15,6 +15,16 @@ listingsRouter.get("/", async (req, res) => {
   }
 });
 
+listingsRouter.get("/:propertyType", async (req, res) => {
+  try{
+    const result = await Listings.find({ propertyType: req.params.propertyType})
+    res.status(200).send(result);
+  }catch(err){
+    res.status(404).send(err);
+  }
+
+});
+
 listingsRouter.post("/userListings", async (req, res) => {
   console.log(`route hit with: ${req.body.ownerEmail}`);
   try {
