@@ -15,13 +15,13 @@ listingsRouter.get("/", async (req, res) => {
   }
 });
 
-listingsRouter.get("/userListings/:email", async (req, res) => {
+listingsRouter.get("/userListings", async (req, res) => {
   try {
-    console.log(req.params);
-    const { email } = req.params;
-    const myListings = await Listings.find({ ownerEmail: email });
+    console.log(req.body);
+    const { ownerEmail } = req.body;
+    const myListings = await Listings.find({ ownerEmail }).exec();
     console.log(myListings);
-    res.status(200).send(req.params);
+    res.status(200).send(myListings);
   } catch (err) {
     res.status(404).send(err);
   }
