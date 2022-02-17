@@ -13,7 +13,7 @@ usersRouter.get("/", async (req, res) => {
   }
 });
 
-usersRouter.get("/findUser", async (req, res) => {
+usersRouter.post("/findUser", async (req, res) => {
   try {
     const { email } = req.body;
     const myUser = await Users.findOne({ email });
