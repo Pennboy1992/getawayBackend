@@ -1,5 +1,5 @@
 import express from "express";
-import Rentals from "../../../models/Rentals";
+import Rentals from "../../../models/Rentals.js";
 
 const rentalsRouter = new express.Router();
 
@@ -60,3 +60,5 @@ rentalsRouter.delete("/delete", async (req, res) => {
     console.log(err);
   }
 });
+
+export default rentalsRouter;

@@ -10,6 +10,6 @@ const rootRouter = new express.Router();
 rootRouter.use("/api/v1/listings", listingsRouter);
 rootRouter.use("/api/v1/users", usersRouter);
 rootRouter.use("/api/v1/types", propertyRouter);
-rootRouter.use("/api/v1/types", rentalsRouter);
+rootRouter.use("/api/v1/rentals", rentalsRouter);
 
 export default rootRouter;
